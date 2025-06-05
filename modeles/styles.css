@@ -1,0 +1,502 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: 'kyrial-sans-pro';
+  src: url('../fonts/Kyrial-Sans-Pro.woff2') format('woff2'),
+       url('../fonts/Kyrial-Sans-Pro.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body {
+  font-family: 'kyrial-sans-pro', sans-serif;
+  background: #f9f9f9;
+  color: #1a1a1a;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 2em;
+  background-color: #1B2A38;
+  color: white;
+}
+
+/* Bande blanche en haut de la navbar */
+.header#head {
+  content: "";
+  top: 0;
+  left: 0;
+  height: 10px; /* épaisseur de la bande blanche */
+  width: 100%;
+  /*background-color: white;*/
+  border-top: 20px solid #1B2A38; /* séparation supérieur nette */
+  border-bottom: 20px solid #1B2A38; /* séparation nférieur nette */;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.nav {
+  position: relative;
+}
+
+.nav .burger {
+  display: none;
+  background: none;
+  color: white;
+  font-size: 2rem;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5em;
+  align-items: center;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links li a:hover {
+  color: #00bcd4;
+  text-decoration: underline;
+  background-color: #273d50;
+}
+
+.nav-links li.dropdown .btn {
+  background-color: transparent;
+  /*border: 2px solid #19c6cb;
+  padding: 8px 16px;*/
+  color: white;
+  padding: 0.5em 1em;
+  border: 2px solid #00bcd4;
+  border-radius: 5px;
+  color: #00bcd4;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-links li.dropdown .btn:hover {
+  background-color: #00b4bd;
+  color: white;
+  font-weight: bold;
+}
+
+.dropdown {
+  position: relative; /*Sert de base au positionnement du dropdown */
+}
+
+/* Le contenu du menu déroulant */
+.dropdown-content {
+  position: absolute;
+  top: 100%; /* Juste sous le bouton */
+  left: 0;
+  background-color: #00b4bd;
+  padding: 0.5rem;
+  display: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 0.5rem;
+  min-width: auto;
+  z-index: 999;
+  margin-top: 10px; /*très petit espace entre le bouton et le dropdown*/
+}
+
+/* Liens à l’intérieur du dropdown */
+.dropdown-content li {
+  list-style: none;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 0.5rem;
+  color: #333;
+  text-decoration: none;
+}
+
+/* Afficher au survol */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .nav .burger {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #1B2A38;
+    flex-direction: column;
+    width: 200px;
+    display: none;
+    padding: 1em;
+    box-shadow: 0 0 10px #1B2A38;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 0.5em 0;
+  }
+}
+
+.logo strong {
+  display: block;
+  font-size: 0.9em;
+}
+
+.form-lbl-color {
+  color: #1B2A38;
+}
+
+.info-maintenance {
+  font-size: 1.4em;
+  color: #00bcd4;
+  font-weight: bold;
+}
+
+.info-maintenance span {
+  color: white;
+}
+
+.sans-styles {
+  text-decoration: none;
+}
+
+/*PAGE*/
+
+.main-content {
+  max-width: 1000px;
+  margin: auto;
+  padding: 2em;
+}
+
+.main-content h1 {
+    position: relative;
+    display: inline-block; /* Nécessaire pour que le ::after suive le texte */
+    z-index: 1; /* Pour être devant la barre si besoin */
+}
+
+.main-content h1::after {
+    content: "";
+    position: absolute;
+    bottom: 4px; /* Ou -5px selon l’effet souhaité */
+    left: calc(100% + 20px); /* Barre à droite du titre */
+    width: 100vw; /* Barre responsive */
+    max-width: 180px; /* Ne dépasse jamais cette taille */
+    height: 12px;
+    background: #1B2A38;
+    transition: width 0.3s ease;
+    z-index: -1; /* Derrière le texte */
+    transform: translateY(-50%) skew(-30deg); /*Inclinaise de la barre*/
+    border-radius: 2px;
+}
+
+/*Page - Accueil*/
+.hero {
+  position: relative;
+  height: 100vh;
+  background-image: url('./img/h1-background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  backdrop-filter: blur(4px); /* léger flou */
+  background-color: rgba(0, 0, 0, 0.4); /* assombrit pour lisibilité du texte */
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  padding: 2rem;
+}
+
+.hero .btn {
+  margin-top: 2rem;
+  padding: 0.8rem 1.6rem;
+  background-color: white;
+  color: #0f2b3c;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.hero .btn:hover {
+  background-color: #ddd;
+  transform: scale(1.05);
+}
+
+/* Shake animation */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  50% { transform: translateX(2px); }
+  75% { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
+}
+
+.shake {
+  animation: shake 1s ease-in-out infinite;
+}
+
+/*PAGE - INSCRIPTION*/
+.subtitle {
+  color: #00bcd4;
+  font-size: 1.2em;
+  margin-top: 0.5em;
+}
+
+.description {
+  margin: 1em 0 2em;
+}
+
+.btn {
+  background: #1B2A38;
+  color: white;
+  text-decoration: bold;
+  padding: 0.7em 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 1em;
+}
+
+.btn:hover {
+    background-color: #0097a7; /* Fond un peu plus foncé */
+    transform: scale(1.05); /* Léger zoom */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Assombrissement */
+}
+
+/* Conteneur */
+.login-container {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+  justify-content: space-between;
+}
+
+.form {
+  flex: 1;
+  min-width: 280px;
+}
+
+.form h2 {
+  margin-bottom: 1em;
+  text-decoration: underline;
+}
+
+.form-group {
+  display: flex;
+  gap: 1em;
+  margin-bottom: 1em;
+  flex-wrap: wrap;
+}
+
+.form-group div {
+  flex: 1;
+  min-width: 180px;
+}
+
+input {
+  width: 100%;
+  padding: 0.5em;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.submit-btn {
+  background: #1B2A38;
+  color: white;
+  text-decoration: bold;
+  padding: 0.7em 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 1em;
+}
+
+.submit-btn:hover {
+    background-color: #0097a7; /* Fond un peu plus foncé */
+    transform: scale(1.05); /* Léger zoom */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Assombrissement */
+}
+
+.form-image img {
+  max-width: 300px;
+  border-radius: 10px;
+}
+
+.footer {
+  background: #1B2A38;
+  color: white;
+  padding: 2em;
+  margin-top: 4em;
+}
+
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2em;
+}
+
+.footer-logo .socials a {
+  margin-right: 1em;
+  text-decoration: none;
+  color: #00bcd4;
+}
+
+.footer-links a {
+  display: block;
+  color: #ccc;
+  text-decoration: none;
+  margin: 0.3em 0;
+}
+
+.footer-bottom {
+  margin-top: 2em;
+  font-size: 0.9em;
+  text-align: center;
+  position: relative
+}
+
+.footer-bottom a {
+  color: #00bcd4;
+  text-decoration: none;
+}
+
+.custom-styles-lien {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;         /* optionnel : pour accentuer le style */
+  transition: all 0.3s ease; /* effet fluide */
+}
+
+.custom-styles-lien:hover {
+  color: #00bcd4;            /* une couleur d’accent au survol */
+  text-decoration: underline;
+}
+
+/*ICON - Drapeau français - Footer*/
+.lang-icon {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+}
+
+.lang-icon img {
+    border-radius: 4px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+}
+
+/* Styles pour les apostrophes */
+.apostrophe {
+  /*display: flex;*/
+  position: absolute;
+}
+
+.alert {
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.alert-error {
+    background-color: #ffe0e0;
+    color: #d10000;
+    border: 1px solid #d10000;
+}
+
+.alert-success {
+    background-color: #e0ffe8;
+    color: #007e33;
+    border: 1px solid #007e33;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Barre cyan oblique en haut d'une section */
+.bar-cyan {
+    background: #00A5B5;
+    height: 60px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+}
+
+/* Barre bleu foncé oblique inversée */
+.bar-dark {
+    background: #0f2b3c;
+    height: 60px;
+    clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
+}
+
+.section.oblique-top {
+    background-color: #e7fafd;
+    clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
+    padding-top: 6rem;
+}
+
+.section.oblique-bottom {
+    background-color: #e7fafd;
+    clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+    padding-bottom: 6rem;
+}
