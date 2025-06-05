@@ -57,11 +57,57 @@ header('Content-Type: text/html; charset=utf-8');
     <!-- Le contenu de la page commence ici -->
     <!--Coeur de la page-->
     <main class="main-content">
-     <h2>Bienvenue <?= htmlspecialchars($_SESSION['utilisateur']['prenom']) ?> 👋</h2>
-    <a href="../logout.php">Se déconnecter</a>
+    <h1>Catalogue des catégories de matériels proposés</h1>
+        <p class="subtitle">« ~ Catalogue de ce que l'on peut vous proposé en prêt via ce site internet. »</p>
+        <p class="description">● Consulter.</p>
+    <!--Coeur de la page-->
+    <div class="grid">
+    <div class="item">
+        <a href="./creer_mat.php">
+            <img src="../../img/create.png" alt="Créer">
+            <h3>Créer un matériel</h3>
+            <p>Ajouter un nouvel équipement</p>
+        </a>
+    </div>
+    <div class="item">
+        <a href="stock_mat.php">
+            <img src="../../img/stock.png" alt="Stock">
+            <h3>Stock de matériel</h3>
+            <p>Voir tout le matériel enregistré</p>
+        </a>
+    </div>
+    <div class="item">
+        <a href="deplacer_mat.php">
+            <img src="../../img/moove.png" alt="Déplacement">
+            <h3>Déplacer du matériel</h3>
+            <p>Changer son emplacement</p>
+        </a>
+    </div>
+    <div class="item">
+        <a href="inventorier.php">
+            <img src="../../img/inventory.png" alt="Inventaire">
+            <h3>Inventorier</h3>
+            <p>Faire l'inventaire par étiquette</p>
+        </a>
+    </div>
+    <div class="item">
+        <a href="etiquette.php">
+            <img src="../../img/edit.png" alt="Étiquette">
+            <h3>Éditer une étiquette</h3>
+            <p>Re-générer le QR Code</p>
+        </a>
+    </div>
+    <div class="item">
+        <a href="ajouter_entreprise.php">
+            <img src="../../img/add.png" alt="Entreprise">
+            <h3>Nouvelle entreprise</h3>
+            <p>Ajouter un client</p>
+        </a>
+    </div>
+    </div>
     </main>
     <!--Footer - Bas de page-->
-    <?php include '../../inclus/footer-template-public.php'; ?>
+    <?php include '../../inclus/footer-tech-template.php'; ?>
     <!--Script - Responsive-->
     <script src="../modeles/responsive.js" async defer></script>
     <script src="../modeles/fade-n.js" async defer></script>

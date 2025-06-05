@@ -1,6 +1,29 @@
 <?php
+session_start();
+
+ini_set('display_errors', 0); // Ne jamais afficher d'erreurs en production
+ini_set('log_errors', 1);     // Loggue les erreurs dans un fichier
+error_reporting(E_ALL);       // Capte toutes les erreurs
+// Inclusion du fichier de configuration
+require_once '../../config/config.php';
+
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+if (!isset($_SESSION['utilisateur'])) {
+    header('Location: ../public/login.php');
+    exit();
+}
+
 // Set content type
 header('Content-Type: text/html; charset=utf-8');
+
+// Requête
+$sql = "SELECT m.nom, m.sn, tm.description AS type_materiel
+        FROM MATERIEL m
+        JOIN TYPE_MATERIEL tm ON m.id_type_materiel = tm.id_type_materiel";
+$stmt = $pdo->query($sql);
+$materiels = $stmt->fetchAll();
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -16,7 +39,7 @@ header('Content-Type: text/html; charset=utf-8');
         <!--Auteur du développement des pages et du site internet-->
         <meta name="author" content="Enzo.C - INFO'MAINTENANCE">
         <!--Nom de l'onglet de la page suivante qui apparait dans le navigateur.-->
-        <title>Présentation - Matériel de prêt | INFO'MAINTENANCE</title>
+        <title>Dashboard Tech - Matériel de prêt | INFO'MAINTENANCE</title>
         <!--Balise qui adapte la taille au maximum de la page à la taille du navigateur / de l'écran automatiquement.-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'self'">
@@ -27,9 +50,9 @@ header('Content-Type: text/html; charset=utf-8');
         <!--Icône qui apparait dans l'onglet du navigateur.-->
         <link rel="shortcut icon" href="./img/apostrophe_double.svg" type="image/x-icon">
         <!--Insertion du design graphique grâce au fichier "styles.css" qui y fait référence dans la page.-->
-        <link rel="stylesheet" href="../modeles/styles.css">
+        <link rel="stylesheet" href="../../modeles/styles.css">
         <!--Balises - Utile lors du partage du lien du site internet dans une application ou il y a un outil de messagerie par exemple - métadonnées automatique ajouté sous l'image du lien insérer-->
-        <meta property="og:title" content="Présentation - Matériel de prêt | INFO'MAINTENANCE">
+        <meta property="og:title" content="Accueil - Matériel de prêt | INFO'MAINTENANCE">
         <meta property="og:description" content="« ~ Votre stock de prêt, toujours à portée de main. » ● Description.">
         <meta property="og:image" content="https://192.168.102.132.info-maintenance.fr/img/logo_pret.png">
         <meta property="og:url" content="https://192.168.102.132.info-maintenance.fr">
@@ -37,57 +60,47 @@ header('Content-Type: text/html; charset=utf-8');
     </head>
     <body>
     <!--Header - Haut de page-->
-    <?php include '../inclus/header-template-public.php'; ?>
+    <?php include '../../inclus/header-template-tech.php'; ?>
     <!-- Le contenu de la page commence ici -->
     <main class="main-content">
-        <h1>Catalogue des catégories des matériels proposés</h1>
-        <p class="subtitle">« ~ Catalogue de ce que l'on peut vous proposé en prêt via ce site internet. »</p>
-        <p class="description">● Consulter.</p>
     <!--Coeur de la page-->
-        <div class="grid">
-            <div class="item">
-                <img src="../img/switch.png" alt="Switch">
-                <h3>Switchs</h3>
-                <p>Différents modèles x ports</p>
-            </div>
-            <div class="item">
-                <img src="../img/pc-portable.jpg" alt="PC Portable">
-                <h3>PC portable</h3>
-                <p>Déployés</p>
-            </div>
-            <div class="item">
-                <img src="../img/pc-fixe.jpg" alt="PC Fixe">
-                <h3>PC fixe</h3>
-                <p>Déployés</p>
-                </div>
-            <div class="item">
-                <img src="../img/ecran.png" alt="Écran">
-                <h3>Écrans</h3>
-                <p>24” & 27”</p>
-            </div>
-            <div class="item">
-                <img src="../img/pare-feux.jpg" alt="Pare-feu">
-                <h3>Pare-feux</h3>
-                <p>Mise à jour</p>
-            </div>
-            <div class="item">
-                <img src="../img/serveur.jpg" alt="Serveurs">
-                <h3>Serveurs</h3>
-                <p>HYPERV déployés</p>
-                </div>
-            <div class="item">
-                <img src="../img/nas.png" alt="NAS">
-                <h3>NAS</h3>
-                <p>Portable</p>
-            </div>
-        </div>
+        <h2>Stock de matériel</h2>
+        <input type="search" id="search" placeholder="🔍 Rechercher dans le tableau...">
+
+        <table id="stockTable">
+            <thead>
+                <tr>
+                    <th>Type de matériel</th>
+                    <th>Nom / Marque / Référence</th>
+                    <th>Numéro de série</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($materiels as $m): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($m['type_materiel']) ?></td>
+                        <td><?= htmlspecialchars($m['nom']) ?></td>
+                        <td><?= htmlspecialchars($m['sn']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </main>
-
     <!--Footer - Bas de page-->
-    <?php include '../inclus/footer-template-public.php'; ?>
-
+    <?php include '../../inclus/footer-tech-template.php'; ?>
     <!--Script - Responsive-->
-    <script src="../inclus/responsive.js" async defer></script>
-    <script src="../inclus/fade-n.js" async defer></script>
+    <script src="../../modeles/responsive.js" async defer></script>
+    <script src="../../modeles/fade-n.js" async defer></script>
+    <script>
+        document.getElementById("search").addEventListener("keyup", function () {
+            const search = this.value.toLowerCase();
+            const rows = document.querySelectorAll("#stockTable tbody tr");
+            rows.forEach(row => {
+                row.style.display = [...row.children].some(td =>
+                    td.textContent.toLowerCase().includes(search)
+                ) ? "" : "none";
+            });
+        });
+    </script>
     </body>
 </html>
