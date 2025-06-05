@@ -1,10 +1,4 @@
 <?php
-// header.php - Boilerplate Header Template
-//echo "/* Boilerplate Header Template */\n";
-
-// Set default timezone
-date_default_timezone_set('UTC');
-
 // Set content type
 header('Content-Type: text/html; charset=utf-8');
 ?>
@@ -33,7 +27,7 @@ header('Content-Type: text/html; charset=utf-8');
         <!--Icône qui apparait dans l'onglet du navigateur.-->
         <link rel="shortcut icon" href="./img/apostrophe_double.svg" type="image/x-icon">
         <!--Insertion du design graphique grâce au fichier "styles.css" qui y fait référence dans la page.-->
-        <link rel="stylesheet" href="./styles.css">
+        <link rel="stylesheet" href="../modeles/styles.css">
         <!--Balises - Utile lors du partage du lien du site internet dans une application ou il y a un outil de messagerie par exemple - métadonnées automatique ajouté sous l'image du lien insérer-->
         <meta property="og:title" content="Présentation - Matériel de prêt | INFO'MAINTENANCE">
         <meta property="og:description" content="« ~ Votre stock de prêt, toujours à portée de main. » ● Description.">
@@ -45,4 +39,55 @@ header('Content-Type: text/html; charset=utf-8');
     <!--Header - Haut de page-->
     <?php include '../inclus/header-template-public.php'; ?>
     <!-- Le contenu de la page commence ici -->
+    <main class="main-content">
+        <h1>Catalogue des catégories de matériels proposés</h1>
+        <p class="subtitle">« ~ Catalogue de ce que l'on peut vous proposé en prêt via ce site internet. »</p>
+        <p class="description">● Consulter.</p>
     <!--Coeur de la page-->
+        <div class="grid">
+            <div class="item">
+                <img src="../img/switch.png" alt="Switch">
+                <h3>Switchs</h3>
+                <p>Différents modèles x ports</p>
+            </div>
+            <div class="item">
+                <img src="../img/pc-portable.jpg" alt="PC Portable">
+                <h3>PC portable</h3>
+                <p>Déployés</p>
+            </div>
+            <div class="item">
+                <img src="../img/pc-fixe.jpg" alt="PC Fixe">
+                <h3>PC fixe</h3>
+                <p>Déployés</p>
+                </div>
+            <div class="item">
+                <img src="../img/ecran.png" alt="Écran">
+                <h3>Écrans</h3>
+                <p>24” & 27”</p>
+            </div>
+            <div class="item">
+                <img src="../img/pare-feux.jpg" alt="Pare-feu">
+                <h3>Pare-feux</h3>
+                <p>Mise à jour</p>
+            </div>
+            <div class="item">
+                <img src="../img/serveur.jpg" alt="Serveurs">
+                <h3>Serveurs</h3>
+                <p>HYPERV déployés</p>
+                </div>
+            <div class="item">
+                <img src="../img/nas.png" alt="NAS">
+                <h3>NAS</h3>
+                <p>Portable</p>
+            </div>
+        </div>
+    </main>
+
+    <!--Footer - Bas de page-->
+    <?php include '../inclus/footer-template-public.php'; ?>
+
+    <!--Script - Responsive-->
+    <script src="../inclus/responsive.js" async defer></script>
+    <script src="../inclus/fade-n.js" async defer></script>
+    </body>
+</html>

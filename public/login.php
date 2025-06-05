@@ -63,7 +63,7 @@ if (!isset($_SESSION['csrf_token'])) {
     <!-- Le contenu de la page commence ici -->
     <!--Coeur de la page-->
     <main class="main-content">
-        <h1>Espace de connection</h1>
+        <h1>Espace de connexion</h1>
         <p class="subtitle">« ~  Accédez à votre espace en un clic. »</p>
         <p class="description">● Identifiez-vous et accèder rapidement à votre stock de prêt.</p>
     <!--Formulaire d'inscription - 1ère colonne-->
@@ -96,7 +96,7 @@ if (!isset($_SESSION['csrf_token'])) {
         </div>
     </main>
     <!--Footer - Bas de page-->
-    <?php include '../modeles/footer-template.php'; ?>
+    <?php include '../inclus/footer-template-public.php'; ?>
     <!--Script - Responsive-->
     <script src="../modeles/responsive.js" async defer></script>
     <script src="../modeles/fade-n.js" async defer></script>

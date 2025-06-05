@@ -1,22 +1,19 @@
 <?php
 session_start();
+
+ini_set('display_errors', 0); // Ne jamais afficher d'erreurs en production
+ini_set('log_errors', 1);     // Loggue les erreurs dans un fichier
+error_reporting(E_ALL);       // Capte toutes les erreurs
 // Inclusion du fichier de configuration
-require_once 'config.php';
+require_once '../../config/config.php';
 
 if (!isset($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 if (!isset($_SESSION['utilisateur'])) {
-    header('Location: login.php');
+    header('Location: ../public/login.php');
     exit();
 }
-?>
-<?php
-// header.php - Boilerplate Header Template
-//echo "/* Boilerplate Header Template */\n";
-
-// Set default timezone
-date_default_timezone_set('UTC');
 
 // Set content type
 header('Content-Type: text/html; charset=utf-8');
@@ -35,7 +32,7 @@ header('Content-Type: text/html; charset=utf-8');
         <!--Auteur du développement des pages et du site internet-->
         <meta name="author" content="Enzo.C - INFO'MAINTENANCE">
         <!--Nom de l'onglet de la page suivante qui apparait dans le navigateur.-->
-        <title>Name_page - Matériel de prêt | INFO'MAINTENANCE</title>
+        <title>Dashboard Tech - Matériel de prêt | INFO'MAINTENANCE</title>
         <!--Balise qui adapte la taille au maximum de la page à la taille du navigateur / de l'écran automatiquement.-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'self'">
@@ -46,7 +43,7 @@ header('Content-Type: text/html; charset=utf-8');
         <!--Icône qui apparait dans l'onglet du navigateur.-->
         <link rel="shortcut icon" href="./img/apostrophe_double.svg" type="image/x-icon">
         <!--Insertion du design graphique grâce au fichier "styles.css" qui y fait référence dans la page.-->
-        <link rel="stylesheet" href="./styles.css">
+        <link rel="stylesheet" href="../../modeles/styles.css">
         <!--Balises - Utile lors du partage du lien du site internet dans une application ou il y a un outil de messagerie par exemple - métadonnées automatique ajouté sous l'image du lien insérer-->
         <meta property="og:title" content="Accueil - Matériel de prêt | INFO'MAINTENANCE">
         <meta property="og:description" content="« ~ Votre stock de prêt, toujours à portée de main. » ● Description.">
@@ -54,13 +51,20 @@ header('Content-Type: text/html; charset=utf-8');
         <meta property="og:url" content="https://192.168.102.132.info-maintenance.fr">
         <meta property="og:type" content="website">
     </head>
-     <body>
+    <body>
     <!--Header - Haut de page-->
-    <?php include 'header-template.php'; ?>
+    <?php include '../../inclus/header-template-tech.php'; ?>
     <!-- Le contenu de la page commence ici -->
     <!--Coeur de la page-->
     <main class="main-content">
      <h2>Bienvenue <?= htmlspecialchars($_SESSION['utilisateur']['prenom']) ?> 👋</h2>
-    <a href="logout.php">Se déconnecter</a>
+    <a href="../logout.php">Se déconnecter</a>
+    </main>
+    <!--Footer - Bas de page-->
+    <?php include '../../inclus/footer-template-public.php'; ?>
+    <!--Script - Responsive-->
+    <script src="../modeles/responsive.js" async defer></script>
+    <script src="../modeles/fade-n.js" async defer></script>
+    </body>
 </html>
 

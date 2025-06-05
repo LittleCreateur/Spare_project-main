@@ -83,7 +83,7 @@ header('Content-Type: text/html; charset=utf-8');
     <section class="hero">
       <div class="hero-overlay">
           <h1 class="shake">La gestion de<br>matériel de prêt</h1>
-          <p>Retrouvez nos stocks de matériel de prêt en quelques clics<br>et ayez un suivi précis en temps réel.</p>
+          <p class="p-hero">Retrouvez nos stocks de matériel de prêt en quelques clics<br>et ayez un suivi précis en temps réel.</p>
           <a href="./public/signup.php" class="btn">Commencer</a>
       </div>
     </section>

@@ -112,7 +112,7 @@ if (!isset($_SESSION['csrf_token'])) {
         </div>
     </main>
     <!--Footer - Bas de page-->
-    <?php include '../inclus/footer-template.php'; ?>
+    <?php include '../inclus/footer-template-public.php'; ?>
     <!--Script - Responsive-->
     <script src="../modeles/responsive.js" async defer></script>
     <script src="../modeles/fade-n.js" async defer></script>

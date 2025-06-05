@@ -52,6 +52,6 @@ $_SESSION['utilisateur'] = [
 $_SESSION['success'] = "Bienvenue " . htmlspecialchars($user['prenom']) . " 👋";
 
 error_log("Redirection vers dashboard.php");
-header("Location: ../public/dashboard.php");
+header("Location: ../public/technicen/dashboard.php");
 exit();
 ?>

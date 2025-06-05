@@ -1,10 +1,4 @@
 <?php
-// header.php - Boilerplate Header Template
-//echo "/* Boilerplate Header Template */\n";
-
-// Set default timezone
-date_default_timezone_set('UTC');
-
 // Set content type
 header('Content-Type: text/html; charset=utf-8');
 ?>
@@ -33,7 +27,7 @@ header('Content-Type: text/html; charset=utf-8');
         <!--Icône qui apparait dans l'onglet du navigateur.-->
         <link rel="shortcut icon" href="./img/apostrophe_double.svg" type="image/x-icon">
         <!--Insertion du design graphique grâce au fichier "styles.css" qui y fait référence dans la page.-->
-        <link rel="stylesheet" href="./styles.css">
+        <link rel="stylesheet" href="../modeles/styles.css">
         <!--Balises - Utile lors du partage du lien du site internet dans une application ou il y a un outil de messagerie par exemple - métadonnées automatique ajouté sous l'image du lien insérer-->
         <meta property="og:title" content="A propos - Matériel de prêt | INFO'MAINTENANCE">
         <meta property="og:description" content="« ~ Votre stock de prêt, toujours à portée de main. » ● Description.">
@@ -42,9 +36,21 @@ header('Content-Type: text/html; charset=utf-8');
         <meta property="og:type" content="website">
 </head>
 <body>
-    <!--Header - Haut de page-->
+        <!--Header - Haut de page-->
     <?php include '../inclus/header-template-public.php'; ?>
     <!-- Le contenu de la page commence ici -->
+    <main class="main-content">
+        <h1>A propos</h1>
+        <p class="subtitle">« ~ Vous pouvez nous contacter ou nous retrouver sur :. »</p>
+        <p class="description">● ...</p>
     <!--Coeur de la page-->
+    </main>
+
+    <!--Footer - Bas de page-->
+    <?php include '../inclus/footer-template-public.php'; ?>
+
+    <!--Script - Responsive-->
+    <script src="../inclus/responsive.js" async defer></script>
+    <script src="../inclus/fade-n.js" async defer></script>
     </body>
 </html>

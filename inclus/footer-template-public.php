@@ -24,17 +24,17 @@
         <div class="footer-links">
             <p><strong>Plan du site</strong></p>
             <a href="#">Accueil</a>
-            <a href="./documentations.php">Documentations</a>
-            <a href="./a_propos.php">À propos</a>
+            <a href="../public/documentations.php">Documentations</a>
+            <a href="../public/a_propos.php">À propos</a>
         </div>
         </div>
         <div class="footer-bottom">
             <hr/>
             <br/>
             <p>Copyright © 2025 <a href="https://www.info-maintenance.fr/" target="_blank" class="custom-styles-lien"><i>INFO'MAINTENANCE</i></a> Tous droits réservés.</p>
-            <p><a href="./a_propos.php"><u>Termes & Conditions</u></a> · <a href="./a_propos.php"><u>Politique de confidentialité</u></a></p>
+            <p><a href="./a_propos.php"><u>Termes & Conditions</u></a> · <a href="../public/a_propos.php"><u>Politique de confidentialité</u></a></p>
             <div class="lang-icon">
-                <img src="./img/icon_fr.png" alt="Drapeau-Français" width="24" height="16">
+                <img src="../img/icon_fr.png" alt="Drapeau-Français" width="24" height="16">
             </div>
         </div>
     </footer>
