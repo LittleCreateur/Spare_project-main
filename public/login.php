@@ -23,6 +23,7 @@ require_once '../config/config.php';
 if (!isset($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
+
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -66,6 +67,19 @@ if (!isset($_SESSION['csrf_token'])) {
         <h1>Espace de connexion</h1>
         <p class="subtitle">« ~  Accédez à votre espace en un clic. »</p>
         <p class="description">● Identifiez-vous et accèder rapidement à votre stock de prêt.</p>
+        <?php if (isset($_SESSION['error'])): ?>
+    <div class="alert alert-error">
+        <?= htmlspecialchars($_SESSION['error']) ?>
+        <?php unset($_SESSION['error']); ?>
+    </div>
+    <?php endif; ?>
+
+    <?php if (isset($_SESSION['success'])): ?>
+        <div class="alert alert-success">
+            <?= htmlspecialchars($_SESSION['success']) ?>
+            <?php unset($_SESSION['success']); ?>
+        </div>
+    <?php endif; ?>
     <!--Formulaire d'inscription - 1ère colonne-->
         <div class="form-section">
             <div class="login-container">

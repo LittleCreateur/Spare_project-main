@@ -1,15 +1,21 @@
 <?php
 session_start();
 // Inclusion du fichier de configuration
-require_once 'config.php';
+require_once '../../config.php';
 
 if (!isset($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 if (!isset($_SESSION['utilisateur'])) {
-    header('Location: login.php');
+    header('Location: ../../login.php');
     exit();
 }
+
+if (!isset($_SESSION['utilisateur']) || $_SESSION['utilisateur']['role'] !== 'client') {
+    header('Location: ../../public/login.php');
+    exit();
+}
+
 ?>
 <?php
 // header.php - Boilerplate Header Template

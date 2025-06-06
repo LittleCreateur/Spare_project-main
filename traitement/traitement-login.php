@@ -9,9 +9,25 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 
-if (!$user) {
-    error_log("Aucun utilisateur trouvé avec l'email : $email");
-}
+// if (!$user) {
+//     error_log("Aucun utilisateur trouvé avec l'email : $email");
+//     // Redirection sécurisée selon rôle
+//     if ($user['id_role'] === '2') {
+//         header('Location: ../../public/technicien/dashboard.php');
+//         exit();
+//     } elseif ($user['id_role'] === '3') {
+//         header('Location: ../../client/dashboard.php');
+//         exit();
+//     } else {
+//         // Rôle inconnu
+//         header('Location: ../erreur/acces-refuse.php');
+//         exit();
+//     }
+// } else {
+//     $_SESSION['error'] = "Identifiants invalides.";
+//     header('Location: ../public/login.php');
+//     exit();
+// }
 
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -46,7 +62,8 @@ $_SESSION['utilisateur'] = [
     'prenom' => $user['prenom'],
     'nom' => $user['nom'],
     'email' => $user['email'],
-    'id_entreprise' => $user['id_entreprise']
+    'id_entreprise' => $user['id_entreprise'],
+    'id_role' => $user['nom']
 ];
 
 $_SESSION['success'] = "Bienvenue " . htmlspecialchars($user['prenom']) . " 👋";

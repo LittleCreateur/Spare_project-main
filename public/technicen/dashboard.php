@@ -15,6 +15,13 @@ if (!isset($_SESSION['utilisateur'])) {
     exit();
 }
 
+session_start();
+
+// if (!isset($_SESSION['utilisateur']) || $_SESSION['utilisateur']['role'] !== '2') {
+//     header('Location: ../../public/login.php');
+//     exit();
+// }
+
 // Set content type
 header('Content-Type: text/html; charset=utf-8');
 ?>
