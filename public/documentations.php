@@ -28,6 +28,7 @@ header('Content-Type: text/html; charset=utf-8');
         <link rel="shortcut icon" href="./img/apostrophe_double.svg" type="image/x-icon">
         <!--Insertion du design graphique grâce au fichier "styles.css" qui y fait référence dans la page.-->
         <link rel="stylesheet" href="../modeles/styles.css">
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
         <!--Balises - Utile lors du partage du lien du site internet dans une application ou il y a un outil de messagerie par exemple - métadonnées automatique ajouté sous l'image du lien insérer-->
         <meta property="og:title" content="Documentations - Matériel de prêt | INFO'MAINTENANCE">
         <meta property="og:description" content="« ~ Votre stock de prêt, toujours à portée de main. » ● Description.">

@@ -58,6 +58,7 @@ if (!isset($_SESSION['csrf_token'])) {
     <!--Formulaire d'inscription - 1ère colonne-->
         <div class="form-section">
             <div class="login-container">
+                <img src="../img/apostrophe_double.svg" alt='Apostrophe' class="apostrophe-img" style="width: 100px" loading="lazy">
                 <form action="../traitement/traitement-signup.php" class="form fade-in show" method="POST" data-animate>
                     <h2>S’inscrire :</h2>
                     <div class="form-group">
@@ -106,8 +107,7 @@ if (!isset($_SESSION['csrf_token'])) {
             </div>
     <!--Image - Illustration-->
         <div class="form-image">
-            <img src="../img/apostrophe_double.svg" alt='Apostrophe' class="apostrophe" style="width: 100px" loading="lazy">
-            <img src="../img/h1-background.jpg" alt="Matériel de prêt - illustration informatique" loading="lazy">
+            
         </div>
         </div>
     </main>

@@ -53,8 +53,22 @@ body {
   border-bottom-right-radius: 10px;
 }
 
+/*LOGO*/
 .logo img {
-  height: 40px;
+  transition: transform 0.3s ease;
+  transform-origin: center;
+  height: 45px;
+}
+
+.logo img:hover {
+  transform: scale(1.15); /* Zoom à 115% */
+}
+
+/*Responsive sur pc*/
+@media (min-width: 768px) {
+  .logo img:hover {
+    transform: scale(1.15);
+  }
 }
 
 .nav {
@@ -239,13 +253,13 @@ body {
   padding: 2em;
 }
 
-.main-content h1 {
+.main-content :is(h1, h2) {
     position: relative;
     display: inline-block; /* Nécessaire pour que le ::after suive le texte */
     z-index: 1; /* Pour être devant la barre si besoin */
 }
 
-.main-content h1::after {
+.main-content :is(h1, h2)::after {
     content: "";
     position: absolute;
     bottom: 4px; /* Ou -5px selon l’effet souhaité */
@@ -258,6 +272,11 @@ body {
     z-index: -1; /* Derrière le texte */
     transform: translateY(-50%) skew(-30deg); /*Inclinaise de la barre*/
     border-radius: 2px;
+}
+
+/* Réduction au survol */
+.main-content :is(h1, h2):hover::after {
+  width: 60px;
 }
 
 /* HERO SECTION */
@@ -358,11 +377,12 @@ body {
 /* Conteneur */
 .login-container {
   background: white;
+  position: relative;
   padding: 2.5rem;
   border-radius: 10px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 400px;
+  /*max-width: 100%; Soit 400px (verti*/
 }
 
 .tech-container {
@@ -500,9 +520,14 @@ input {
 }
 
 /* Styles pour les apostrophes */
-.apostrophe {
-  /*display: flex;*/
+.apostrophe-img {
   position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: auto;
+  z-index: 10;
+  opacity: 0.8; /* facultatif, pour un effet discret */
 }
 
 .alert {
@@ -531,30 +556,84 @@ input {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Barre cyan oblique en haut d'une section */
+/* Styles pour la bannière du logo */
+.logo-banner {
+  background-color: #1B2A38;
+  color: white;
+  padding: 4rem 1rem 2rem;
+  clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+  position: relative;
+}
+
+.banner-columns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.side-blank {
+  background-color: white;
+  width: 40px;
+  height: 150px;
+  transform: skewY(5deg);
+}
+
+.left {
+  transform: skewY(-5deg);
+}
+
+.center-content {
+  text-align: center;
+}
+
+.center-content img {
+  max-width: 350px;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.center-content .btn {
+  display: inline-block;
+  background-color: #00A5B5;
+  color: white;
+  padding: 0.5rem 1.0rem;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.center-content .btn:hover {
+  background-color: #00A5B5;
+}
+
+/* Barre cyan oblique */
 .bar-cyan {
-    background: #00A5B5;
-    height: 60px;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+  background: #00A5B5;
+  height: 40px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
 }
 
-/* Barre bleu foncé oblique inversée */
-.bar-dark {
-    background: #0f2b3c;
-    height: 60px;
-    clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
+.center-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column; /* Ajouté pour forcer l’empilement vertical */
 }
 
-.section.oblique-top {
-    background-color: #e7fafd;
-    clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
-    padding-top: 6rem;
+.center-content img {
+  max-width: 350px;
+  width: 100%;
+  margin-bottom: 1.5rem; /* Garde l'espace sous l’image */
 }
 
-.section.oblique-bottom {
-    background-color: #e7fafd;
-    clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
-    padding-bottom: 6rem;
+.center-content .btn {
+  margin-top: 1rem; /* Ajoute un espace entre le logo et le bouton */
+}
+
+.section :is(h2,) {
+  margin-bottom: 10px,
 }
 
 .grid {
@@ -562,6 +641,16 @@ input {
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 30px;
 }
+
+.section :is(h3) {
+  margin-bottom: 20px;
+  color: #00bcd4;
+}
+
+.grid p {
+  margin-bottom: 15px;
+}
+
 .item {
   text-align: center;
   padding: 10px;
@@ -618,4 +707,23 @@ th {
 }
 tr:hover {
     background-color: #f1f1f1;
+}
+
+input[type="text"]
+select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.75rem;
+  background-color: white;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  margin-bottom: 0.5rem;
+}
+
+input[type="text"]:focus,
+select:focus {
+  border-color: #1B2A38;;
+  box-shadow: 0 0 0 3px #00A5B5;;
+  outline: none;
 }
